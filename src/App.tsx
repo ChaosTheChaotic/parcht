@@ -48,10 +48,12 @@ const App = () => {
 	  <svg className="prompt-symbol" viewBox="0 0 24 24" width="20" height="20">
   	    <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
   	  </svg>
-          <span className="year">{year}</span>
         </div>
-        <div className="clock">{time}</div>
-        <div className="date">{date}</div>
+	<div className="clock">{time}</div>
+	<div className="date-year-container">
+  	  <div className="year">{year}</div>
+  	  <div className="date">{date}</div>
+  	</div>
       </div>
 
       {/* Main terminal area */}
@@ -65,7 +67,7 @@ const App = () => {
           </div>
           
           <div className="input-line">
-            <span className="prompt">$</span>
+            <span className="prompt">~ $</span>
             <input
               type="text"
               value={command}
