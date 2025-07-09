@@ -189,7 +189,9 @@ body {
 }
 
 .terminal:hover {
-  animation: float 3s ease-in-out infinite;
+  animation:
+    float 3s ease-in-out infinite,
+    glow-pulse 4s ease-in-out infinite;
 }
 
 .terminal-header {
@@ -305,12 +307,13 @@ input::placeholder {
   letter-spacing: 1px;
   transition: all 0.3s ease;
   border: 1px solid rgba(203, 166, 247, 0.15);
-  transform: translateY(20px);
   opacity: 0;
   animation: floatUp 0.5s forwards;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  transform: translateY(0);
+  transition: all 0.3 ease;
 }
 
 .link-button::before {
@@ -334,7 +337,8 @@ input::placeholder {
 .link-button:hover,
 .link-button:focus {
   background: rgba(49, 50, 68, 0.6);
-  transform: translateY(-3px);
+  transform: none;
+  transform: scale(1.05);
   box-shadow:
     0 5px 15px rgba(203, 166, 247, 0.3),
     0 0 10px rgba(203, 166, 247, 0.2);
@@ -431,13 +435,13 @@ input::placeholder {
 
 @keyframes glow-pulse {
   0% {
-    filter: brightness(100%);
+    filter: brightness(100%) drop-shadow(0 0 5px rgba(203, 166, 247, 0.3));
   }
   50% {
-    filter: brightness(120%);
+    filter: brightness(120%) drop-shadow(0 0 15px rgba(203, 166, 247, 0.6));
   }
   100% {
-    filter: brightness(100%);
+    filter: brightness(100%) drop-shadow(0 0 5px rgba(203, 166, 247, 0.3));
   }
 }
 
