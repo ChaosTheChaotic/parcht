@@ -282,7 +282,15 @@ input {
 }
 
 input:focus {
-  box-shadow: 0 2px 0 var(--teal);
+  box-shadow: none;
+  background: linear-gradient(
+    to bottom, 
+    transparent 95%,
+    var(--teal) 95%
+  );
+  background-size: 97%;
+  background-position: left bottom;
+  background-repeat: no-repeat;
 }
 
 input::placeholder {
@@ -336,9 +344,8 @@ input::placeholder {
 
 .link-button:hover,
 .link-button:focus {
-  background: rgba(49, 50, 68, 0.6);
-  transform: none;
   transform: scale(1.05);
+  background: rgba(49, 50, 68, 0.6);
   box-shadow:
     0 5px 15px rgba(203, 166, 247, 0.3),
     0 0 10px rgba(203, 166, 247, 0.2);
