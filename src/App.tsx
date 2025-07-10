@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 const App = () => {
@@ -8,6 +8,40 @@ const App = () => {
   const [command, setCommand] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const focusInput = () => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    };
+
+    focusInput();
+
+    // Retry focusing with increasing delays
+    const retryFocus = () => {
+      let attempts = 0;
+      const maxAttempts = 5;
+      
+      const tryFocus = () => {
+        if (!document.hasFocus() || document.activeElement !== inputRef.current) {
+          focusInput();
+          attempts++;
+        }
+        
+        if (attempts < maxAttempts) {
+          setTimeout(tryFocus, 100 * Math.pow(2, attempts));
+        }
+      };
+      
+      setTimeout(tryFocus, 300);
+    };
+
+    window.addEventListener("focus", retryFocus);
+    return () => window.removeEventListener("focus", retryFocus);
+  }, []);
 
   // Update time and date
   useEffect(() => {
@@ -85,7 +119,7 @@ const App = () => {
       </div>
 
       {/* Main terminal area */}
-      <div className="terminal">
+      <div className="terminal" onClick={() => inputRef.current?.focus()}>
         <div className="terminal-header">
           <div className="terminal-title">chaos@chaosfox: ~</div>
         </div>
@@ -100,6 +134,7 @@ const App = () => {
         <div className={`input-line ${isInputFocused ? "input-active" : ""}`}>
           <span className="prompt">~ $</span>
           <input
+            ref={inputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
