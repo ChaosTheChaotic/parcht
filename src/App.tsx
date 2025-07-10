@@ -8,8 +8,16 @@ const App = () => {
   const [command, setCommand] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsLoaded(true);
+  }, 100);
+  return () => clearTimeout(timer);
+}, []);
 
   useEffect(() => {
     const focusInput = () => {
@@ -95,7 +103,7 @@ const App = () => {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${isLoaded ? 'loaded' : ''}`}>
       {/* Header with clock */}
       <div className="header">
         <div className="terminal-prompt">
