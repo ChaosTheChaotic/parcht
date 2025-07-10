@@ -27,31 +27,6 @@ const App = () => {
     };
 
     focusInput();
-
-    // Retry focusing with increasing delays
-    const retryFocus = () => {
-      let attempts = 0;
-      const maxAttempts = 5;
-
-      const tryFocus = () => {
-        if (
-          !document.hasFocus() ||
-          document.activeElement !== inputRef.current
-        ) {
-          focusInput();
-          attempts++;
-        }
-
-        if (attempts < maxAttempts) {
-          setTimeout(tryFocus, 100 * Math.pow(2, attempts));
-        }
-      };
-
-      setTimeout(tryFocus, 300);
-    };
-
-    window.addEventListener("focus", retryFocus);
-    return () => window.removeEventListener("focus", retryFocus);
   }, []);
 
   // Update time and date
