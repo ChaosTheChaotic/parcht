@@ -1,3 +1,19 @@
+html {
+  font-size: 100%;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 80%;
+  }
+}
+
 :root {
   --base: #1e1e2e;
   --mantle: #181825;
@@ -402,4 +418,49 @@ input::placeholder {
 
 .clock {
   animation-delay: 1s;
+}
+
+.clock {
+  font-size: clamp(1.8rem, 6vw, 2.8rem); 
+}
+
+.date, .year {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+}
+
+.output-line, input {
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+}
+
+.terminal-title {
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+}
+
+.prompt {
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+}
+
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .header {
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.5rem;
+  }
+  
+  .header {
+    padding: 0.6rem 1rem;
+  }
+  
+  .terminal-body {
+    padding: 0.5rem;
+  }
 }
