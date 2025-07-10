@@ -500,22 +500,21 @@ input {
   opacity: 0;
 }
 
-
 @keyframes terminalEntranceGlow {
   0% {
-    box-shadow: 
+    box-shadow:
       0 0 0 1px rgba(203, 166, 247, 0),
       0 0 0 rgba(203, 166, 247, 0),
       0 0 0 rgba(203, 166, 247, 0);
   }
   70% {
-    box-shadow: 
+    box-shadow:
       0 0 0 1px rgba(203, 166, 247, 0.2),
       0 0 30px rgba(203, 166, 247, 0.3),
       0 0 60px rgba(203, 166, 247, 0.1);
   }
   100% {
-    box-shadow: 
+    box-shadow:
       0 0 0 1px rgba(203, 166, 247, 0.2),
       0 0 30px rgba(203, 166, 247, 0.3),
       0 0 60px rgba(203, 166, 247, 0.1);
@@ -523,11 +522,10 @@ input {
 }
 
 .terminal {
-  animation: 
+  animation:
     slideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s forwards,
     terminalEntranceGlow 1.2s ease-out 0.4s forwards;
 }
-
 
 @keyframes headerEntranceGlow {
   0% {
@@ -543,17 +541,15 @@ input {
 }
 
 .header {
-  animation: 
+  animation:
     slideUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s forwards,
     headerEntranceGlow 0.8s ease-out 0.2s forwards;
 }
-
 
 .output-line {
   animation: fadeIn 0.8s ease-out 0.8s forwards;
   opacity: 0;
 }
-
 
 .input-line {
   animation: fadeIn 0.8s ease-out 1s forwards;

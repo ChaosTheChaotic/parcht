@@ -12,12 +12,12 @@ const App = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setIsLoaded(true);
-  }, 100);
-  return () => clearTimeout(timer);
-}, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const focusInput = () => {
@@ -32,18 +32,21 @@ useEffect(() => {
     const retryFocus = () => {
       let attempts = 0;
       const maxAttempts = 5;
-      
+
       const tryFocus = () => {
-        if (!document.hasFocus() || document.activeElement !== inputRef.current) {
+        if (
+          !document.hasFocus() ||
+          document.activeElement !== inputRef.current
+        ) {
           focusInput();
           attempts++;
         }
-        
+
         if (attempts < maxAttempts) {
           setTimeout(tryFocus, 100 * Math.pow(2, attempts));
         }
       };
-      
+
       setTimeout(tryFocus, 300);
     };
 
@@ -103,7 +106,7 @@ useEffect(() => {
   };
 
   return (
-    <div className={`app ${isLoaded ? 'loaded' : ''}`}>
+    <div className={`app ${isLoaded ? "loaded" : ""}`}>
       {/* Header with clock */}
       <div className="header">
         <div className="terminal-prompt">
