@@ -549,8 +549,7 @@ input:focus {
 }
 
 .terminal:hover,
-.header:hover,
-.clock:hover {
+.header:hover {
   animation:
     glow-pulse 1.5s infinite ease-in-out,
     terminalEntranceGlow 0.5s forwards;
