@@ -53,14 +53,6 @@ const App = () => {
     if (e.key === "Enter") executeCommand();
   };
 
-  // Quick links data
-  const quickLinks = [
-    { name: "github", url: "https://github.com" },
-    { name: "reddit", url: "https://reddit.com" },
-    { name: "youtube", url: "https://youtube.com" },
-    { name: "gmail", url: "https://mail.google.com" },
-  ];
-
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return "Good morning,";
@@ -120,20 +112,6 @@ const App = () => {
           />
           {command === "" && showCursor && <span className="cursor"></span>}
         </div>
-      </div>
-
-      {/* Quick Links */}
-      <div className="quick-links">
-        {quickLinks.map((link, i) => (
-          <a
-            key={i}
-            href={link.url}
-            className="link-button"
-            style={{ animationDelay: `${i * 0.1}s` }}
-          >
-            {link.name}
-          </a>
-        ))}
       </div>
     </div>
   );

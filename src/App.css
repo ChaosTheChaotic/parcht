@@ -72,6 +72,7 @@ body {
     0 0 15px rgba(203, 166, 247, 0.1);
   border: 1px solid rgba(205, 214, 244, 0.15);
   transition: all 0.3s ease;
+  animation: floatUp 0.5s forwards;
 }
 
 .header:hover {
@@ -84,6 +85,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  animation: floatUp 0.5s forwards;
 }
 
 .prompt-symbol {
@@ -133,9 +135,12 @@ body {
 }
 
 .terminal {
+  aspect-ratio: 1/1;
+  max-height: 100%;
   background: var(--base);
   border-radius: 16px;
   overflow: hidden;
+  animation: floatUp 0.5s forwards;
   box-shadow:
     0 0 0 1px rgba(203, 166, 247, 0.2),
     0 0 30px rgba(203, 166, 247, 0.3),
@@ -145,6 +150,12 @@ body {
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .terminal {
+    max-height: calc(100vh - 300px);
+  }
 }
 
 .terminal:hover {
@@ -199,11 +210,7 @@ body {
   padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
-}
-
-.terminal-buttons {
-  display: flex;
-  gap: 6px;
+  animation: floatUp 0.5s forwards;
 }
 
 .terminal-title {
@@ -211,18 +218,21 @@ body {
   font-size: 0.8rem;
   text-align: center;
   flex-grow: 1;
+  animation: floatUp 0.5s forwards;
 }
 
 .terminal-body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 1rem;
+  animation: floatUp 0.5s forwards;
 }
 
 .output {
   flex-grow: 1;
   overflow-y: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 @keyframes fadeIn {
@@ -283,11 +293,7 @@ input {
 
 input:focus {
   box-shadow: none;
-  background: linear-gradient(
-    to bottom, 
-    transparent 95%,
-    var(--teal) 95%
-  );
+  background: linear-gradient(to bottom, transparent 95%, var(--teal) 95%);
   background-size: 97%;
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -297,69 +303,16 @@ input::placeholder {
   color: var(--overlay0);
 }
 
-.quick-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.link-button {
-  background: rgba(49, 50, 68, 0.4);
-  color: var(--subtext1);
-  text-align: center;
-  padding: 0.8rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(203, 166, 247, 0.15);
-  opacity: 0;
-  animation: floatUp 0.5s forwards;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transform: translateY(0);
-  transition: all 0.3 ease;
-}
-
-.link-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(203, 166, 247, 0.1),
-    rgba(180, 190, 254, 0.1),
-    rgba(203, 166, 247, 0.1)
-  );
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.link-button:hover,
-.link-button:focus {
-  transform: scale(1.05);
-  background: rgba(49, 50, 68, 0.6);
-  box-shadow:
-    0 5px 15px rgba(203, 166, 247, 0.3),
-    0 0 10px rgba(203, 166, 247, 0.2);
-  color: var(--mauve);
-}
-
-.link-button:hover::before,
-.link-button:focus::before {
-  opacity: 1;
-}
-
 @keyframes floatUp {
   to {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatIn {
+  to {
+    transform: translateX(0);
     opacity: 1;
   }
 }
@@ -388,15 +341,6 @@ input::placeholder {
 ::-webkit-scrollbar-thumb {
   background: var(--mauve);
   border-radius: 4px;
-}
-
-.terminal-buttons span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 6px;
-  transition: transform 0.2s ease;
 }
 
 .date-year-container:hover .date,
@@ -439,7 +383,6 @@ input::placeholder {
   display: inline-block;
 }
 
-
 @keyframes glow-pulse {
   0% {
     filter: brightness(100%) drop-shadow(0 0 5px rgba(203, 166, 247, 0.3));
@@ -452,25 +395,12 @@ input::placeholder {
   }
 }
 
-
 .clock,
 .terminal:hover,
-.link-button:hover,
 .header:hover {
   animation: glow-pulse 4s infinite;
 }
 
-
 .clock {
   animation-delay: 1s;
-}
-
-
-.terminal-body {
-  padding: 1rem; 
-}
-
-
-.output {
-  padding-bottom: 1.5rem; 
 }
