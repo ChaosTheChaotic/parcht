@@ -512,3 +512,152 @@ input {
   animation: fadeIn 0.8s ease-out 1s forwards;
   opacity: 0;
 }
+
+input {
+  background: linear-gradient(to bottom, transparent 95%, var(--teal) 95%);
+  background-size: 0% 100%;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition:
+    background-size 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+input:focus {
+  background-size: 97% 100%;
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.7;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.1);
+  }
+  100% {
+    opacity: 0.7;
+    filter: brightness(1);
+  }
+}
+
+.terminal,
+.header,
+.clock {
+  animation: glow-pulse 3s infinite ease-in-out;
+}
+
+.terminal:hover,
+.header:hover,
+.clock:hover {
+  animation:
+    glow-pulse 1.5s infinite ease-in-out,
+    terminalEntranceGlow 0.5s forwards;
+}
+
+.terminal {
+  position: relative;
+  z-index: 0;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  background: radial-gradient(
+    circle at center,
+    rgba(203, 166, 247, 0.2) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.terminal:hover::before {
+  opacity: 0.8;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  background: radial-gradient(
+    circle at center,
+    rgba(203, 166, 247, 0.15) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+.header:hover::before {
+  opacity: 0.6;
+}
+
+.clock {
+  position: relative;
+  transition: text-shadow 0.4s ease;
+}
+
+.clock::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle,
+    rgba(203, 166, 247, 0.3) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  border-radius: 50%;
+}
+
+.clock:hover::after {
+  opacity: 0.8;
+}
+
+@keyframes smooth-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.cursor {
+  animation: smooth-blink 1.2s infinite ease-in-out;
+}
+
+.input-active .prompt {
+  animation:
+    pulse 1.2s infinite ease-in-out,
+    color-pulse 2s infinite alternate;
+}
+
+@keyframes color-pulse {
+  from {
+    color: var(--mauve);
+  }
+  to {
+    color: var(--lavender);
+  }
+}
