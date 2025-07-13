@@ -64,8 +64,8 @@ const App = () => {
 
   // Terminal commands functionality
   const executeCommand = () => {
-    window.location.href = `https://google.com/search?q=${encodeURIComponent(command)}`;
-
+    window.open(`https://google.com/search?q=${encodeURIComponent(command)}`, "_blank", "noopener,noreferrer");
+    window.close();
     setCommand("");
   };
 
